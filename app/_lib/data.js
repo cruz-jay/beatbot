@@ -14,13 +14,6 @@ export async function generateMusic(formData, userId) {
         genre: formData.genre,
         userId: userId,
         model: formData.model || "facebook/musicgen-small",
-        // Include image generation parameters if available
-        generateImage: formData.generateImage,
-        imagePrompt: formData.imagePrompt,
-        imageWidth: formData.imageWidth,
-        imageHeight: formData.imageHeight,
-        imageSteps: formData.imageSteps,
-        imageGuidance: formData.imageGuidance,
       }),
     });
 
