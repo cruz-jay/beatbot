@@ -260,7 +260,6 @@ export async function getUser(email) {
       return null;
     }
 
-    console.log(`Found existing user with email: ${email}, id: ${data.id}`);
     return data;
   } catch (err) {
     return null;
