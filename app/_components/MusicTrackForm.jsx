@@ -119,15 +119,9 @@ function MusicTrackForm() {
         },
         body: JSON.stringify({
           prompt: formData.description,
-          model: "facebook/musicgen-small",
           title: formData.title,
           genre: formData.genre,
           userEmail: session.user.email,
-          generateImage: true,
-          imageWidth: 1024,
-          imageHeight: 1024,
-          imageSteps: 30,
-          imageGuidance: 7.5,
         }),
       });
 
@@ -175,7 +169,6 @@ function MusicTrackForm() {
       <h2 className="text-xl font-bold mb-3 text-[#5c4b3e]">
         Create a new Track!
       </h2>
-
       {/* Track limit indicator */}
       <div className="mb-2 text-sm text-[#85766a]">
         Tracks used:{" "}
@@ -188,19 +181,32 @@ function MusicTrackForm() {
           </span>
         )}
       </div>
-
       {error && (
         <div className="bg-[#d98b7e]/20 border border-[#d98b7e] text-[#d98b7e] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">
-          {error}
+          Facebook/MusicGen API AI model is down ►►{" "}
+          <a
+            href="https://huggingface.co/spaces/facebook/MusicGen"
+            target="_blank">
+            HuggingFace
+          </a>
         </div>
       )}
+
+      <div className="bg-[#d98b7e]/20 border border-[#9d4646] text-[#ffffff] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">
+        Facebook/MusicGen API AI model may be currently experiencing high demand
+        and user will receive a 503 ►►{" "}
+        <a
+          href="https://huggingface.co/spaces/facebook/MusicGen"
+          target="_blank">
+          HuggingFace
+        </a>
+      </div>
 
       {success && (
         <div className="bg-[#9db18c]/20 border border-[#9db18c] text-[#5e6e58] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">
           {success}
         </div>
       )}
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 flex-grow">
         <div className="space-y-1">
           <label
