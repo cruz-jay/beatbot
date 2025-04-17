@@ -192,7 +192,7 @@ function MusicTrackForm() {
         </div>
       )}
 
-      <div className="bg-[#d98b7e]/20 border border-[#9d4646] text-[#ffffff] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">
+      {/* <div className="bg-[#d98b7e]/20 border border-[#9d4646] text-[#ffffff] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">
         Facebook/MusicGen API AI model may be currently experiencing high demand
         and user will receive a 503 ►►{" "}
         <a
@@ -200,7 +200,7 @@ function MusicTrackForm() {
           target="_blank">
           HuggingFace
         </a>
-      </div>
+      </div> */}
 
       {success && (
         <div className="bg-[#9db18c]/20 border border-[#9db18c] text-[#5e6e58] px-3 py-2 rounded-[0.425rem] mb-3 text-sm">

@@ -1,35 +1,5 @@
 import { supabase } from "./supabase";
 
-export async function generateMusic(formData, userId) {
-  try {
-    const response = await fetch("/api/generate-music", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: formData.description,
-        albumArt: formData.albumArt,
-        title: formData.title,
-        genre: formData.genre,
-        userId: userId,
-        model: formData.model || "facebook/musicgen-small",
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Failed to generate music");
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Error generating music:", err);
-    throw err;
-  }
-}
-
 // New function to generate only images
 export async function generateImage(imageParams, userId) {
   try {
