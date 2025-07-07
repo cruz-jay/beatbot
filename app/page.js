@@ -1,103 +1,69 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+function Page() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="relative min-h-screen w-full overflow-hidden bg-[#0e1c26] flex flex-col items-center justify-center">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0e1c26] via-[#13232c] to-[#172a32]"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Subtle Pattern Overlay */}
+      <div className="absolute inset-0 z-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#2a454b_0%,_transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_#21373f_0%,_transparent_50%)]"></div>
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Logo/Brand */}
+        <div className="mb-8">
+          <h1 className="text-5xl md:text-7xl mb-6 font-bold text-[#fdfbf6] tracking-tighter">
+            Beat
+            <span className="text-[#2a454b] bg-gradient-to-r from-[#2a454b] to-[#253e45] bg-clip-text text-transparent">
+              {" "}
+              Bot Studio
+            </span>
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#2a454b] to-[#253e45] mx-auto rounded-full"></div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Description */}
+        <p className="text-[#fdfbf6]/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+          Create and produce music with the power of AI. Experience the future
+          of music production with intelligent beat generation and
+          studio-quality tools.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-5 justify-center mb-16">
+          <Link
+            href="/studio"
+            className="group px-8 py-4 text-lg font-semibold bg-gradient-to-r from-[#2a454b] to-[#253e45] hover:from-[#253e45] hover:to-[#21373f] text-[#fdfbf6] rounded-lg transition-all duration-300 shadow-lg shadow-[#2a454b]/30 hover:shadow-[#2a454b]/50 transform hover:-translate-y-1">
+            <span className="flex items-center justify-center gap-2">
+              Head into Studio
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </span>
+          </Link>
+          <Link
+            href="/about"
+            className="px-8 py-4 text-lg font-semibold border-2 border-[#1c3139] hover:border-[#2a454b] text-[#fdfbf6]/90 hover:text-[#fdfbf6] rounded-lg transition-all duration-300 bg-[#13232c]/50 hover:bg-[#172a32]/70 backdrop-blur-sm">
+            About Me
+          </Link>
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2a454b] via-[#253e45] to-[#21373f]"></div>
+    </main>
   );
 }
+
+export default Page;
