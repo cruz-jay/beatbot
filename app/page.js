@@ -28,9 +28,7 @@ function Page() {
 
         {/* Description */}
         <p className="text-[#fdfbf6]/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-          Create and produce music with the power of AI. Experience the future
-          of music production with intelligent beat generation and
-          studio-quality tools.
+          Create music with the power of AI.
         </p>
 
         {/* CTA Buttons */}
