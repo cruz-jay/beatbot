@@ -11,7 +11,6 @@
     "cy:run": "npx cypress run --spec"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
     "@supabase/supabase-js": "^2.50.3",
     "@tanstack/react-query": "^5.72.2",
     "@tanstack/react-query-devtools": "^5.72.2",
@@ -25,7 +24,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "cypress": "^14.5.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "tailwindcss": "^4"

@@ -57,7 +57,7 @@ function Page() {
           <Link
             href="/about"
             className="px-8 py-4 text-lg font-semibold border-2 border-[#1c3139] hover:border-[#2a454b] text-[#fdfbf6]/90 hover:text-[#fdfbf6] rounded-lg transition-all duration-300 bg-[#13232c]/50 hover:bg-[#172a32]/70 backdrop-blur-sm">
-            About Me
+            About
           </Link>
         </div>
       </div>

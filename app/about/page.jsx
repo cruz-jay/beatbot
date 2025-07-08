@@ -12,20 +12,14 @@ function AboutPage() {
   return (
     <main className="min-h-screen bg-[#0e1c26] text-[#fdfbf6] py-10 px-5">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">About Me</h1>
           <div className="h-1 w-20 bg-gradient-to-r from-[#2a454b] to-[#253e45] mx-auto"></div>
         </div>
 
-        {/* Main Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-          {/* Technologies Stack - Left Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 pt-20">
           <div className="lg:col-span-1">
             <div className="bg-[#13232c] rounded-lg border border-[#1c3139] p-6 h-full">
-              <h2 className="text-xl font-bold mb-6 text-center">
-                Technologies Used
-              </h2>
+              <h2 className="text-xl font-bold mb-6 text-center">Tech Stack</h2>
 
               <div className="flex flex-col gap-4">
                 <div className="bg-[#172a32] rounded-lg border border-[#1c3139] p-4 flex flex-col items-center hover:border-[#2a454b] transition-all">
@@ -84,27 +78,30 @@ function AboutPage() {
             </div>
           </div>
 
-          {/* Profile and Project Section */}
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
-              {/* Profile Section */}
               <div className="bg-[#13232c] rounded-lg border border-[#1c3139] p-8 h-full flex flex-col">
                 <div className="w-32 h-32 mx-auto mb-6 relative">
                   <div className="w-full h-full rounded-full bg-gradient-to-r from-[#2a454b] to-[#253e45] flex items-center justify-center text-4xl font-bold text-[#fdfbf6]">
                     JC
                   </div>
                 </div>
-
                 <h2 className="text-2xl font-bold text-center mb-4">
                   CS Student @ UNLV
                 </h2>
-
                 <p className="text-[#fdfbf6]/80 mb-6 text-center">
                   I'm a Computer Science student at the University of Nevada,
-                  Las Vegas, passionate about web development and creating new
-                  things!
+                  Las Vegas, passionate about web dev!
                 </p>
-
+                <div className="flex justify-center mb-6 pt-10">
+                  <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <Link
+                      href="/studio"
+                      className="flex items-center justify-center gap-2 bg-[#172a32]  px-6 py-4 rounded-xl  font-semibold text-lg text-[#fdfbf6] ">
+                      Go to Studio
+                    </Link>
+                  </button>
+                </div>
                 <div className="mt-auto">
                   <h3 className="text-xl font-semibold mb-3 text-center">
                     Connect With Me
@@ -143,18 +140,33 @@ function AboutPage() {
                 </div>
               </div>
 
-              {/* About This Project Section */}
               <div className="bg-[#13232c] rounded-lg border border-[#1c3139] p-8 h-full">
-                <h2 className="text-2xl font-bold mb-6">Project Highlight</h2>
-
                 <div>
                   <h3 className="text-xl font-semibold mb-4">
                     About This Project
                   </h3>
-                  {/* Blank space for personal content */}
-                  <div className="text-[#fdfbf6]/80 min-h-[200px] flex items-center justify-center border-2 border-dashed border-[#1c3139] rounded-lg">
+                  <div className="text-[#fdfbf6]/80 min-h-[200px] flex flex-col items-center justify-center border-2 border-dashed border-[#1c3139] rounded-lg px-6 py-8 space-y-4">
+                    <h3 className="text-lg font-bold text-center">
+                      Version 3!
+                    </h3>
                     <p className="text-center text-[#fdfbf6]/60 italic">
-                      Content to be added personally
+                      The first two iterations were more of a hands-on exercise
+                      with Next.js and authentication.
+                      <br />
+                      I set up third-party login with Google, Spotify, and
+                      GitHub.
+                      <br />
+                      After some thought, I realized authentication wasn't
+                      really necessary for such a simple application but it was
+                      a great opportunity to get familiar with both NextAuth and
+                      Clerk.
+                      <br />
+                      Initially, I focused purely on the logic, especially the
+                      exposed endpoint built with Flask.
+                      <br />
+                      Later on, I refactored the backend using the /api folder
+                      in Next.js, switched to FastAPI, and deployed it on Modal,
+                      a platform for hosting LLMs and backends.
                     </p>
                   </div>
                 </div>
