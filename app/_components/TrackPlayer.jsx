@@ -226,14 +226,7 @@ function TrackPlayer() {
           </div>
         )}
 
-        {/* Controls */}
         <div className="flex items-center justify-center gap-6">
-          <button className="w-12 h-12 bg-[#13232c] hover:bg-[#172a32] border border-[#253e45] hover:border-cyan-400/50 rounded-xl flex items-center justify-center transition-all text-gray-400 hover:text-cyan-400">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-            </svg>
-          </button>
-
           <button
             onClick={togglePlay}
             disabled={!currentTrack || !isLoaded || error}
@@ -248,12 +241,6 @@ function TrackPlayer() {
               ) : (
                 <path d="M8 5v14l11-7z" />
               )}
-            </svg>
-          </button>
-
-          <button className="w-12 h-12 bg-[#13232c] hover:bg-[#172a32] border border-[#253e45] hover:border-cyan-400/50 rounded-xl flex items-center justify-center transition-all text-gray-400 hover:text-cyan-400">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
             </svg>
           </button>
         </div>
