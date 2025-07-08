@@ -2,7 +2,7 @@
 
 import { useTracks } from "../_store/useTrack";
 
-export function LeftBar() {
+export default function LeftBar() {
   const {
     tracks,
     setCurrentTrack,
@@ -11,11 +11,10 @@ export function LeftBar() {
   } = useTracks();
 
   const handleTrackClick = (track) => {
-    // Ensure we pass the correct audio URL
     const trackData = {
       trackId: track.id,
       title: track.title,
-      audioUrl: track.audioUrl, // Use the processed audioUrl from the track
+      audioUrl: track.audioUrl,
       audioKey: track.audioKey,
     };
 
@@ -24,22 +23,35 @@ export function LeftBar() {
   };
 
   return (
-    <div className="h-full bg-[#e2d1a2] flex flex-col">
-      <div className="p-4 border-b border-[#b19681]">
-        <div className="flex justify-center items-center"></div>
-      </div>
-      {/*  Section title */}
-      <div className="p-4 flex justify-center items-center border-b border-[#b19681]">
-        <span className="font-bold text-[#5c4b3e]">
-          Your Tracks / Past Tracks
-        </span>
-      </div>
-      <div className="flex-1 overflow-y-auto px-2 pt-2">
-        {audioLoading ? (
-          <div className="flex items-center justify-center h-20 text-[#85766a]">
+    <div className="h-full bg-gradient-to-b from-[#0e1c26] to-[#13232c] flex flex-col border-r border-[#253e45]">
+      {/* Header */}
+      <div className="p-6 border-b border-[#253e45]">
+        <div className="flex items-center justify-center">
+          <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
             <svg
-              className="animate-spin h-5 w-5 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24">
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Section title */}
+      <div className="p-6 border-b border-[#253e45]">
+        <div className="text-center">
+          <h2 className="text-lg font-bold text-cyan-400 mb-2">Your Library</h2>
+          <div className="h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+        </div>
+      </div>
+
+      {/* Tracks list */}
+      <div className="flex-1 overflow-y-auto p-4">
+        {audioLoading ? (
+          <div className="flex items-center justify-center h-20 text-gray-400">
+            <svg
+              className="animate-spin h-6 w-6 mr-3"
               fill="none"
               viewBox="0 0 24 24">
               <circle
@@ -54,55 +66,63 @@ export function LeftBar() {
                 fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Loading...
+            <span className="text-sm">Loading tracks...</span>
           </div>
         ) : tracks.length === 0 ? (
-          <div className="text-center py-8 text-[#85766a]">
-            <svg
-              className="w-12 h-12 mx-auto mb-3 opacity-30"
-              fill="currentColor"
-              viewBox="0 0 24 24">
-              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-            </svg>
-            <p>No tracks yet</p>
-            <p className="text-xs mt-1">Create your first track!</p>
+          <div className="text-center py-12">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#172a32] to-[#1c3139] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#253e45]">
+              <svg
+                className="w-8 h-8 text-gray-500"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+              </svg>
+            </div>
+            <p className="text-gray-400 text-sm">No tracks yet</p>
+            <p className="text-gray-500 text-xs mt-1">
+              Create your first masterpiece!
+            </p>
           </div>
         ) : (
-          // Tracks list
-          tracks.map((track) => {
-            return (
+          <div className="space-y-3">
+            {tracks.map((track) => (
               <div
                 key={track.id}
-                className={`flex items-center gap-3 p-2 hover:bg-[#decea0] rounded-[0.425rem] cursor-pointer mb-2 ${
-                  currentTrack?.trackId === track.id ? "bg-[#decea0]" : ""
+                className={`group relative p-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                  currentTrack?.trackId === track.id
+                    ? "bg-gradient-to-r from-[#21373f] to-[#253e45] border border-cyan-400/50 shadow-lg shadow-cyan-400/10"
+                    : "bg-gradient-to-r from-[#172a32] to-[#1c3139] border border-[#253e45] hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/5"
                 }`}
                 onClick={() => handleTrackClick(track)}>
-                <div className="w-12 h-12 bg-gradient-to-br from-[#8d9d4f] to-[#9db18c] rounded-[0.425rem] flex items-center justify-center overflow-hidden">
-                  <svg
-                    className="w-6 h-6 text-[#fdfbf6]"
-                    fill="currentColor"
-                    viewBox="0 0 24 24">
-                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-medium text-[#5c4b3e]">
-                    {track.title || `Track ${track.id}`}
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <div className="relative flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                    </svg>
                   </div>
-                  {/* Debug info - remove in production */}
-                  {process.env.NODE_ENV === "development" && (
-                    <div className="text-xs text-gray-500">
-                      {track.audioUrl ? "Audio: ✓" : "Audio: ✗"}
+                  <div className="flex-1">
+                    <div className="font-medium text-white text-sm">
+                      {track.title || `Track ${track.id}`}
                     </div>
+                    <div className="text-gray-400 text-xs mt-1">
+                      {track.audioUrl ? "Ready to play" : "Processing..."}
+                    </div>
+                  </div>
+                  {currentTrack?.trackId === track.id && (
+                    <div className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse"></div>
                   )}
                 </div>
               </div>
-            );
-          })
+            ))}
+          </div>
         )}
       </div>
     </div>
   );
 }
-
-export default LeftBar;

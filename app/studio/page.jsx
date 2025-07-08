@@ -1,3 +1,4 @@
+// page.jsx
 "use client";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import StudioTitle from "../_components/StudioTitle";
@@ -7,23 +8,23 @@ import LeftBar from "../_components/LeftBar";
 
 export default function StudioPage() {
   return (
-    <div className="flex h-screen bg-[#e4d7b0] text-[#5c4b3e] overflow-hidden">
+    <div className="flex h-screen bg-[#0e1c26] text-white overflow-hidden">
       <PanelGroup direction="horizontal">
         <Panel defaultSize={18} minSize={15} maxSize={25} className="h-screen">
           <LeftBar />
         </Panel>
 
-        <PanelResizeHandle className="w-2 bg-[#decea0] hover:bg-[#8d9d4f] transition-colors" />
+        <PanelResizeHandle className="w-px bg-[#253e45] hover:bg-cyan-400/50 transition-colors" />
 
         <Panel defaultSize={82}>
-          <div className="h-screen flex flex-col py-4 px-6">
-            <div className="flex-none text-center mb-2">
+          <div className="h-screen flex flex-col p-6">
+            <div className="flex-none text-center mb-8">
               <StudioTitle />
             </div>
 
             <div className="flex-grow flex items-center justify-center">
-              <div className="bg-[#f3ead2] rounded-[0.425rem] p-4 border border-[#b19681] shadow-md w-full max-w-5xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="w-full max-w-7xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <MusicTrackForm />
                   <TrackPlayer />
                 </div>
@@ -31,11 +32,15 @@ export default function StudioPage() {
             </div>
 
             {/* Footer */}
-            <div className="flex-none mt-2 text-center border-t-4 border-[#b19681] pt-2">
-              <div className="text-[#85766a] text-sm">
-                {new Date().getFullYear()} BeatBot Studio
+            <div className="flex-none mt-8 text-center border-t border-[#253e45] pt-6">
+              <div className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} BeatBot Studio
               </div>
-              <div className="mt-1 flex justify-center space-x-6"></div>
+              <div className="mt-2 flex justify-center gap-4">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse animation-delay-200"></div>
+                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse animation-delay-400"></div>
+              </div>
             </div>
           </div>
         </Panel>

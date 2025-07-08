@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useTracks } from "../_store/useTrack";
+import Image from "next/image";
 
 function TrackPlayer() {
   const { currentTrack } = useTracks();
@@ -25,11 +26,8 @@ function TrackPlayer() {
         currentTrack.audioUrl
       );
 
-      // Reset audio element
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-
-      // Force reload of audio source
       audioRef.current.load();
     }
   }, [currentTrack?.trackId, currentTrack?.audioKey]);
@@ -68,7 +66,6 @@ function TrackPlayer() {
     };
   }, [currentTrack?.audioUrl]);
 
-  // Handle play/pause
   const togglePlay = async () => {
     if (!audioRef.current || !currentTrack || !isLoaded) {
       console.log("Cannot play: missing audio, track, or not loaded");
@@ -90,7 +87,6 @@ function TrackPlayer() {
     }
   };
 
-  // Update progress bar
   const updateProgress = () => {
     if (!audioRef.current) return;
 
@@ -103,7 +99,6 @@ function TrackPlayer() {
     }
   };
 
-  // Handle audio end
   const handleEnded = () => {
     setIsPlaying(false);
     setProgress(0);
@@ -112,115 +107,159 @@ function TrackPlayer() {
     }
   };
 
-  // Handle audio pause (for external pause events)
   const handlePause = () => {
     setIsPlaying(false);
   };
 
-  // Handle audio play (for external play events)
   const handlePlay = () => {
     setIsPlaying(true);
   };
 
   return (
-    <div className="p-4 bg-[#e7dbbf] rounded-[0.425rem] border border-[#b19681] h-full flex flex-col items-center justify-center">
-      <div className="w-36 h-36 bg-gradient-to-br from-[#decea0] via-[#8d9d4f] to-[#dbc894] rounded-[0.425rem] mb-4 flex items-center justify-center">
-        {currentTrack ? (
-          <svg
-            className="w-10 h-10 text-[#fdfbf6] opacity-70"
-            fill="currentColor"
-            viewBox="0 0 24 24">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-          </svg>
-        ) : (
-          <svg
-            className="w-10 h-10 text-[#5c4b3e] opacity-70"
-            fill="currentColor"
-            viewBox="0 0 24 24">
-            <path d="M12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 16H13V18H11V16ZM11 6H13V14H11V6Z" />
-          </svg>
-        )}
-      </div>
+    <div className="relative p-6 bg-gradient-to-br from-[#0e1c26] to-[#172a32] rounded-2xl border border-[#253e45] shadow-2xl h-full flex flex-col">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-blue-500/5 rounded-2xl"></div>
 
-      <div className="text-center flex-grow flex flex-col justify-center">
-        {currentTrack ? (
-          <>
-            <h3 className="font-medium text-base mb-1 text-[#5c4b3e]">
-              {currentTrack.title}
-            </h3>
-
-            {/* Error display */}
-            {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
-
-            {/* Loading indicator */}
-            {!isLoaded && !error && (
-              <div className="text-[#85766a] text-sm mb-2">
-                Loading audio...
+      <div className="relative z-10 flex flex-col items-center justify-center h-full">
+        {/* Album Art */}
+        <div className="relative mb-8">
+          <div className="w-48 h-48 bg-gradient-to-br from-[#13232c] to-[#1c3139] rounded-3xl border border-[#253e45] flex items-center justify-center shadow-2xl">
+            {currentTrack ? (
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-xl"></div>
+                <div className="relative w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                  <svg
+                    className="w-12 h-12 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                  </svg>
+                </div>
               </div>
-            )}
-
-            {/* Hidden audio element */}
-            <audio
-              ref={audioRef}
-              src={currentTrack.audioUrl}
-              onTimeUpdate={updateProgress}
-              onEnded={handleEnded}
-              onPause={handlePause}
-              onPlay={handlePlay}
-              preload="auto"
-            />
-
-            {/* Progress bar */}
-            <div className="h-2 w-full max-w-xs bg-[#decea0] rounded-full mb-3">
-              <div
-                className="h-2 bg-[#8d9d4f] rounded-full transition-all duration-100"
-                style={{ width: `${progress}%` }}></div>
-            </div>
-
-            {/* Controls */}
-            <div className="flex justify-center">
-              <button
-                className={`p-2 rounded-full ${
-                  isLoaded && !error
-                    ? "bg-[#decea0] hover:bg-[#dbc894] text-[#5c4b3e]"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                } mx-1 transition-colors`}
-                onClick={togglePlay}
-                disabled={!isLoaded || error}>
-                <svg
-                  className="w-5 h-5"
+            ) : (
+              <div className="text-gray-500">
+                {/* <svg
+                  className="w-16 h-16"
                   fill="currentColor"
                   viewBox="0 0 24 24">
-                  {isPlaying ? (
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                  ) : (
-                    <path d="M8 5v14l11-7z" />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="flex flex-col items-center justify-center space-y-2">
-            <p className="text-[#85766a] text-sm">Select a track to play</p>
-            <div className="w-12 h-12 flex items-center justify-center bg-[#decea0] rounded-full">
-              <svg
-                className="w-6 h-6 text-[#8d9d4f] opacity-80"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg> */}
+                <Image
+                  src="/BeatBot.png"
+                  width={600}
+                  height={700}
+                  alt="BeatBot Logo"
                 />
-              </svg>
+              </div>
+            )}
+          </div>
+
+          {/* Animated rings */}
+          {currentTrack && isPlaying && (
+            <div className="absolute inset-0 rounded-full">
+              <div className="absolute inset-0 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
+              <div
+                className="absolute inset-4 border-2 border-blue-500/30 rounded-full animate-ping"
+                style={{ animationDelay: "1s" }}></div>
+            </div>
+          )}
+        </div>
+
+        {/* Track Info */}
+        <div className="text-center mb-8">
+          {currentTrack ? (
+            <>
+              <h3 className="text-xl font-bold text-white mb-2">
+                {currentTrack.title}
+              </h3>
+              <p className="text-gray-400 text-sm">BeatBot Studio</p>
+
+              {/* Error display */}
+              {error && (
+                <div className="text-red-400 text-sm mt-2">{error}</div>
+              )}
+
+              {/* Loading indicator */}
+              {!isLoaded && !error && (
+                <div className="text-gray-400 text-sm mt-2">
+                  Loading audio...
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="space-y-2">
+              <p className="text-gray-400">Select a track to play</p>
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <div
+                  className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
+                  style={{ animationDelay: "200ms" }}></div>
+                <div
+                  className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"
+                  style={{ animationDelay: "400ms" }}></div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Hidden audio element */}
+        {currentTrack && (
+          <audio
+            ref={audioRef}
+            src={currentTrack.audioUrl}
+            onTimeUpdate={updateProgress}
+            onEnded={handleEnded}
+            onPause={handlePause}
+            onPlay={handlePlay}
+            preload="auto"
+          />
+        )}
+
+        {/* Progress Bar */}
+        {currentTrack && (
+          <div className="w-full max-w-md mb-8">
+            <div className="h-2 bg-[#13232c] rounded-full overflow-hidden border border-[#253e45]">
+              <div
+                className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ease-out"
+                style={{ width: `${progress}%` }}></div>
             </div>
           </div>
         )}
+
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-6">
+          <button className="w-12 h-12 bg-[#13232c] hover:bg-[#172a32] border border-[#253e45] hover:border-cyan-400/50 rounded-xl flex items-center justify-center transition-all text-gray-400 hover:text-cyan-400">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+            </svg>
+          </button>
+
+          <button
+            onClick={togglePlay}
+            disabled={!currentTrack || !isLoaded || error}
+            className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 ${
+              currentTrack && isLoaded && !error
+                ? "bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white shadow-lg shadow-cyan-400/25 hover:shadow-cyan-400/40"
+                : "bg-[#13232c] text-gray-500 cursor-not-allowed border border-[#253e45]"
+            }`}>
+            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              {isPlaying ? (
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              ) : (
+                <path d="M8 5v14l11-7z" />
+              )}
+            </svg>
+          </button>
+
+          <button className="w-12 h-12 bg-[#13232c] hover:bg-[#172a32] border border-[#253e45] hover:border-cyan-400/50 rounded-xl flex items-center justify-center transition-all text-gray-400 hover:text-cyan-400">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
 }
+
 export default TrackPlayer;

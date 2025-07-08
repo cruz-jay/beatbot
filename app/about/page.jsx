@@ -2,7 +2,10 @@
 import Link from "next/link";
 import next from "../../public/stack/next.png";
 import supabase from "../../public/stack/supabase.jpg";
-import tailwind from "../../public/stack/tailwind.png";
+import TailWind from "../../public/stack/tailwind.png";
+import Fast from "../../public/stack/fastapi.svg";
+import HuggingFace from "../../public/stack/huggingface.svg";
+
 import Image from "next/image";
 
 function AboutPage() {
@@ -33,7 +36,6 @@ function AboutPage() {
                     Next.js
                   </span>
                 </div>
-
                 <div className="bg-[#172a32] rounded-lg border border-[#1c3139] p-4 flex flex-col items-center hover:border-[#2a454b] transition-all">
                   <div className="w-12 h-12 bg-[#21373f] rounded-full mb-3 flex items-center justify-center">
                     <Image
@@ -46,11 +48,10 @@ function AboutPage() {
                     Supabase
                   </span>
                 </div>
-
                 <div className="bg-[#172a32] rounded-lg border border-[#1c3139] p-4 flex flex-col items-center hover:border-[#2a454b] transition-all">
                   <div className="w-12 h-12 bg-[#21373f] rounded-full mb-3 flex items-center justify-center">
                     <Image
-                      src={tailwind}
+                      src={TailWind}
                       alt="Tailwind CSS"
                       className="w-8 h-8"
                     />
@@ -59,32 +60,24 @@ function AboutPage() {
                     Tailwind CSS
                   </span>
                 </div>
-
                 <div className="bg-[#172a32] rounded-lg border border-[#1c3139] p-4 flex flex-col items-center hover:border-[#2a454b] transition-all">
                   <div className="w-12 h-12 bg-[#21373f] rounded-full mb-3 flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8 text-[#fdfbf6]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor">
-                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm-1 4v12l8-6-8-6z" />
-                    </svg>
+                    <Image src={Fast} alt="FastAPI" className="w-8 h-8" />
                   </div>
                   <span className="text-center text-sm font-medium">
                     FastAPI
                   </span>
                 </div>
-
                 <div className="bg-[#172a32] rounded-lg border border-[#1c3139] p-4 flex flex-col items-center hover:border-[#2a454b] transition-all">
                   <div className="w-12 h-12 bg-[#21373f] rounded-full mb-3 flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8 text-[#fdfbf6]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
+                    <Image
+                      src={HuggingFace}
+                      alt="Hugging Face"
+                      className="w-8 h-8"
+                    />
                   </div>
                   <span className="text-center text-sm font-medium">
-                    LLM Modal
+                    Hugging Face
                   </span>
                 </div>
               </div>
