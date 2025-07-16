@@ -9,7 +9,6 @@ export function useTracks() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch all tracks globally (not user-specific)
   const tracksQuery = useQuery({
     queryKey: ["tracks"],
     queryFn: async () => {
@@ -24,7 +23,6 @@ export function useTracks() {
           return [];
         }
 
-        // Process tracks to add blob URLs for audio playback
         const processedTracks = (data || []).map((track) => {
           let audioUrl = track.mp3_url; // Default fallback
 

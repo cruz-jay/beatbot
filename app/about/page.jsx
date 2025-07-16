@@ -10,13 +10,9 @@ import Image from "next/image";
 
 function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#0e1c26] text-[#fdfbf6] py-10 px-5">
+    <main className="min-h-screen bg-[#0e1c26] text-[#fdfbf6]">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="h-1 w-20 bg-gradient-to-r from-[#2a454b] to-[#253e45] mx-auto"></div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 pt-10">
           <div className="lg:col-span-1">
             <div className="bg-[#13232c] rounded-lg border border-[#1c3139] p-6 h-full">
               <h2 className="text-xl font-bold mb-6 text-center">Tech Stack</h2>
