@@ -1,4 +1,3 @@
-// page.jsx
 "use client";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import StudioTitle from "../_components/StudioTitle";
@@ -31,11 +30,7 @@ export default function StudioPage() {
               </div>
             </div>
 
-            {/* Footer */}
             <div className="flex-none mt-8 text-center border-t border-[#253e45] pt-6">
-              <div className="text-gray-400 text-sm">
-                © {new Date().getFullYear()} BeatBot Studio
-              </div>
               <div className="mt-2 flex justify-center gap-4">
                 <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse animation-delay-200"></div>

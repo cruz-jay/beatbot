@@ -38,12 +38,11 @@ export async function POST(request) {
     }
 
     trackData = newTrack;
-
     // 2. Call external music generation API
     let response;
     try {
       response = await axios.post(
-        "https://cruz-jay--music-generation-api-musicgenerator-api.modal.run",
+        "https://cruz-jay-music--music-generation-api-musicgenerator-api.modal.run",
         {
           prompt: description ? `${prompt}. ${description}` : prompt,
           duration: 25,

@@ -3,18 +3,14 @@ import Link from "next/link";
 function Page() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#0e1c26] flex flex-col items-center justify-center">
-      {/* Gradient Background */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0e1c26] via-[#13232c] to-[#172a32]"></div>
 
-      {/* Subtle Pattern Overlay */}
       <div className="absolute inset-0 z-0 opacity-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#2a454b_0%,_transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_#21373f_0%,_transparent_50%)]"></div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Logo/Brand */}
         <div className="mb-8">
           <h1 className="text-5xl md:text-7xl mb-6 font-bold text-[#fdfbf6] tracking-tighter">
             Beat
@@ -26,12 +22,10 @@ function Page() {
           <div className="w-24 h-1 bg-gradient-to-r from-[#2a454b] to-[#253e45] mx-auto rounded-full"></div>
         </div>
 
-        {/* Description */}
         <p className="text-[#fdfbf6]/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
           Create music with the power of AI.
         </p>
 
-        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-5 justify-center mb-16">
           <Link
             href="/studio"

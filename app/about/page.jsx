@@ -5,7 +5,6 @@ import supabase from "../../public/stack/supabase.jpg";
 import TailWind from "../../public/stack/tailwind.png";
 import Fast from "../../public/stack/fastapi.svg";
 import HuggingFace from "../../public/stack/huggingface.svg";
-
 import Image from "next/image";
 
 function AboutPage() {
